@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be My Valentine? 💖</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+  font-family: "Comic Sans MS", "Poppins", cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(255,105,180,0.3);
+  max-width: 450px;
+  z-index: 2;
+}
+
+h1 {
+  color: #ff4d88;
+  font-size: 36px;
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+button {
+  border: none;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background: #ff4d88;
+  color: white;
+  box-shadow: 0 0 15px rgba(255,77,136,0.5);
+}
+
+#noBtn {
+  background: #ddd;
+  color: #555;
+  margin-left: 20px;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+.stickers {
+  display: none;
+}
+
+.stickers img {
+  width: 120px;
+  margin: 10px;
+}
+
+.love {
+  display: none;
+  font-size: 28px;
+  color: #ff4d88;
+  margin-top: 20px;
+}
+
+/* 💕 Confetti Hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 24px;
+  animation: fall 5s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="question">Will you be my Valentine?💕</h1>
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="sayYes()">Yes💖</button>
+    <button id="noBtn" onclick="sayNo()">No🙈</button>
+  </div>
+
+  <div class="stickers" id="stickers">
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGJoNDJ3am1pd2hzZDNkemc1YmFzZTRvODZ2OXJ3cGNkYnV2ZXRoYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Zl7u48zLVFgLpRwq6f/giphy.gif">
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG9veDVxOWtldzY3MjFoeTN4b3VrcGgwMXpyaTRlbG4xaDY3bGY0aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/A8ReUjJdMCNOM/giphy.gif">
+  </div>
+
+  <div class="love" id="loveText">
+    I love you sooo much🥹😘  
+    Happy Valentine’s Day Betaaa❤️ 
+  </div>
+</div>
+
+<script>
+let noCount = 0;
+let yesSize = 1;
+
+function sayNo() {
+  noCount++;
+  yesSize += 0.4;
+  document.getElementById("yesBtn").style.transform = `scale(${yesSize})`;
+
+  if (noCount == 1) {
+    document.getElementById("question").innerText = "Acchyaa jii😏";
+  } else if (noCount == 2) {
+    document.getElementById("question").innerText = "Sochle betaa🥰";
+  } else {
+    document.getElementById("question").innerText = "Good girl😏💃";
+    document.getElementById("noBtn").style.display = "none";
+  }
+}
+
+function sayYes() {
+  document.querySelector(".buttons").style.display = "none";
+  document.getElementById("question").innerText = "YAYYYYY😍💖";
+  document.getElementById("stickers").style.display = "block";
+  document.getElementById("loveText").style.display = "block";
+
+  startConfetti();
+}
+
+function startConfetti() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }, 200);
+}
+</script>
+
+</body>
+</html>
